@@ -1,0 +1,11 @@
+rootProject.name = 'TestFeatures'
+
+include 'database'
+
+include 'modules:utilities'
+include 'modules:abstractions'
+include 'modules:data'
+include 'modules:product'
+include 'modules:category'
+include 'modules:admin-api'
+include 'modules:app'

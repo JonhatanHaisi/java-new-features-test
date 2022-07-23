@@ -1,0 +1,25 @@
+ext {
+    // GENERAL
+    javaVersion = '17'
+
+    // SONAR LINT
+    sonarLintVersion = '1.5.0'
+
+    // LOMBOK
+    lombokVersion = '1.18.24'
+
+    // SPRING
+    springBootVersion = '2.7.1'
+    springDependencyManagementVersion = '1.0.11.RELEASE'
+    springDocVersion = '1.6.9'
+
+    // FLYWAY
+    flywayVersion = '8.2.0'
+    flywayMysqlVersion = '8.2.2'
+
+    // DATABASE
+    mysqlConnectorVersion = '8.0.12'
+
+    // MODEL MAPPER
+    modelMapperVersion = '3.0.0'
+}

@@ -1,0 +1,19 @@
+plugins {
+    id 'org.flywaydb.flyway' version "$flywayVersion"
+    id 'java'
+}
+
+group = 'com.haisi.java'
+version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = "$javaVersion"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // DATABASE
+    compileOnly "org.flywaydb:flyway-mysql:$flywayMysqlVersion"
+    compileOnly "mysql:mysql-connector-java:$mysqlConnectorVersion"
+}

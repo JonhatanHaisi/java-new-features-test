@@ -1,0 +1,47 @@
+plugins {
+    id "java"
+    id 'jacoco'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'jacoco'
+
+    dependencies {
+        // LOMBOK
+        compileOnly "org.projectlombok:lombok:$lombokVersion"
+        annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    }
+
+}
+
+repositories {
+    mavenCentral()
+}
+
+// ---------- JACOCO TEST REPORT
+task jacocoRootReport(type: JacocoReport, group: 'Coverage reports') {
+    description = 'Generates an aggregate report from all subprojects'
+    dependsOn(subprojects.test)
+
+    additionalSourceDirs.from = files(subprojects.sourceSets.main.allSource.srcDirs)
+    sourceDirectories.from = files(subprojects.sourceSets.main.allSource.srcDirs)
+    classDirectories.from = files(subprojects.sourceSets.main.output)
+    executionData.from = files(subprojects.jacocoTestReport.executionData)
+
+    reports {
+        html.enabled true
+    }
+
+    afterEvaluate {
+        var excludes = [
+            '**/Application.class',
+            'com/haisi/java/testfeatures/*/configuration/*',
+            'com/haisi/java/testfeatures/**/dtos/*',
+            'com/haisi/java/testfeatures/data/entity/*'
+        ]
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: excludes)
+        }))
+    }
+}

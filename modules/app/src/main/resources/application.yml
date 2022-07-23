@@ -1,0 +1,21 @@
+spring:
+
+  jpa:
+    show-sql: true
+    hibernate:
+      dialect: org.hibernate.dialect.MySQLDialect
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/appdb
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+springdoc:
+  api-docs:
+    path: /api/docs/swagger.json
+  swagger-ui:
+    path: /api/docs/swagger-ui.html

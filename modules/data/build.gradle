@@ -1,0 +1,30 @@
+plugins {
+    id 'org.springframework.boot' version "$springBootVersion"
+    id 'io.spring.dependency-management' version "$springDependencyManagementVersion"
+    id "name.remal.sonarlint" version "$sonarLintVersion"
+    id 'java'
+}
+
+bootJar.enabled = false
+jar.enabled = true
+
+group = 'com.haisi.java'
+version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = "$javaVersion"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // SPRING
+    compileOnly 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compileOnly 'org.springframework.boot:spring-boot-starter-logging'
+    runtimeOnly 'mysql:mysql-connector-java'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
