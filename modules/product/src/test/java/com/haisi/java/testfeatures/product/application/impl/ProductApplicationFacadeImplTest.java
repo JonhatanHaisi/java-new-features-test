@@ -1,10 +1,9 @@
 package com.haisi.java.testfeatures.product.application.impl;
 
-import com.haisi.java.testfeatures.abstractions.CrudModel;
 import com.haisi.java.testfeatures.product.dtos.ProductCreateDto;
 import com.haisi.java.testfeatures.product.dtos.ProductResponseDto;
 import com.haisi.java.testfeatures.product.dtos.ProductUpdateDto;
-import org.junit.jupiter.api.Assertions;
+import com.haisi.java.testfeatures.utilities.abstractions.CrudModel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,6 +1,6 @@
-package com.haisi.java.testfeatures.abstractions.impl;
+package com.haisi.java.testfeatures.utilities.abstractions.impl;
 
-import com.haisi.java.testfeatures.abstractions.CrudModel;
+import com.haisi.java.testfeatures.utilities.abstractions.CrudModel;
 import com.haisi.java.testfeatures.utilities.mapping.Mapper;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

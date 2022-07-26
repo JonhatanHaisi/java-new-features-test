@@ -1,4 +1,4 @@
-package com.haisi.java.testfeatures.abstractions;
+package com.haisi.java.testfeatures.utilities.abstractions;
 
 import javax.validation.Valid;
 import java.util.List;

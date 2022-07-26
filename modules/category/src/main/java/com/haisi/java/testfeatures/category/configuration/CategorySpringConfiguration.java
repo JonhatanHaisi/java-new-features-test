@@ -1,11 +1,11 @@
 package com.haisi.java.testfeatures.category.configuration;
 
-import com.haisi.java.testfeatures.abstractions.CrudModel;
-import com.haisi.java.testfeatures.abstractions.impl.CrudModelImpl;
-import com.haisi.java.testfeatures.utilities.qualifiers.Category;
 import com.haisi.java.testfeatures.data.entity.CategoryEntity;
 import com.haisi.java.testfeatures.data.repository.CategoryRepository;
+import com.haisi.java.testfeatures.utilities.abstractions.CrudModel;
+import com.haisi.java.testfeatures.utilities.abstractions.impl.CrudModelImpl;
 import com.haisi.java.testfeatures.utilities.mapping.Mapper;
+import com.haisi.java.testfeatures.utilities.qualifiers.Category;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

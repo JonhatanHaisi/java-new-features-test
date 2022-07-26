@@ -28,11 +28,10 @@ dependencies {
 
     // PROJECT
     implementation project(':modules:utilities')
-    implementation project(':modules:abstractions')
     implementation project(':modules:data')
     implementation project(':modules:product')
     implementation project(':modules:category')
-    implementation project(':modules:admin-api')
+    implementation project(':modules:api-admin')
 
     // TEST
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

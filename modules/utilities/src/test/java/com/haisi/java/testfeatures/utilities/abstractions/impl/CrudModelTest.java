@@ -1,6 +1,6 @@
-package com.haisi.java.testfeatures.abstractions;
+package com.haisi.java.testfeatures.utilities.abstractions.impl;
 
-import com.haisi.java.testfeatures.abstractions.impl.CrudModelImpl;
+import com.haisi.java.testfeatures.utilities.abstractions.CrudModel;
 import com.haisi.java.testfeatures.utilities.mapping.Mapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

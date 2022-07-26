@@ -1,10 +1,10 @@
 package com.haisi.java.testfeatures.category.application.impl;
 
-import com.haisi.java.testfeatures.abstractions.CrudModel;
 import com.haisi.java.testfeatures.category.application.CategoryApplicationFacade;
 import com.haisi.java.testfeatures.category.dtos.CategoryCreateDto;
 import com.haisi.java.testfeatures.category.dtos.CategoryResponseDto;
 import com.haisi.java.testfeatures.category.dtos.CategoryUpdateDto;
+import com.haisi.java.testfeatures.utilities.abstractions.CrudModel;
 import com.haisi.java.testfeatures.utilities.qualifiers.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
