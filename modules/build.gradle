@@ -1,11 +1,31 @@
-plugins {
-    id "java"
-    id 'jacoco'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "info.solidsoft.gradle.pitest:gradle-pitest-plugin:$piTestVersion"
+        classpath "name.remal:gradle-plugins:$sonarLintVersion"
+    }
 }
 
+// ---------- CURRENT MODULE CONFIG
+plugins {
+    id 'java'
+    id 'jacoco'
+}
+apply plugin: 'info.solidsoft.pitest.aggregator'
+
+repositories {
+    mavenCentral()
+}
+
+// ---------- COMMON CONFIGS FOR SUBMODULES
 subprojects {
     apply plugin: 'java'
     apply plugin: 'jacoco'
+    apply plugin: 'info.solidsoft.pitest'
+    apply plugin: "name.remal.sonarlint"
 
     dependencies {
         // LOMBOK
@@ -13,10 +33,15 @@ subprojects {
         annotationProcessor "org.projectlombok:lombok:$lombokVersion"
     }
 
-}
+    // build.dependsOn 'pitest' // waiting https://github.com/hcoles/pitest/issues/537
 
-repositories {
-    mavenCentral()
+    pitest {
+        targetClasses = ['com.haisi.java.testfeatures.*']
+        junit5PluginVersion = '0.15'
+        threads = 4
+        outputFormats = ['HTML']
+    }
+
 }
 
 // ---------- JACOCO TEST REPORT

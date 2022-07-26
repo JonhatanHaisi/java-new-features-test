@@ -5,6 +5,9 @@ ext {
     // SONAR LINT
     sonarLintVersion = '1.5.0'
 
+    // PI Test
+    piTestVersion = '1.7.4'
+
     // LOMBOK
     lombokVersion = '1.18.24'
 
