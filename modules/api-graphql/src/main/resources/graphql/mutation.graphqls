@@ -1,0 +1,4 @@
+type Mutation {
+    createProduct(product: ProductInput): Product
+    updateProduct(id: Int, product: ProductInput): Product
+}

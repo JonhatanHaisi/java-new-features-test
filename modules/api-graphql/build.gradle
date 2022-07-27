@@ -1,0 +1,39 @@
+plugins {
+    id 'org.springframework.boot' version "$springBootVersion"
+    id 'io.spring.dependency-management' version "$springDependencyManagementVersion"
+    id 'java'
+}
+
+bootJar.enabled = false
+jar.enabled = true
+
+group = 'com.haisi.java'
+version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = "$javaVersion"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // SPRING
+    compileOnly 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.springframework.boot:spring-boot-starter-logging'
+    compileOnly 'org.springframework.boot:spring-boot-starter-graphql'
+
+    // PROJECT
+    compileOnly project(':modules:utilities')
+    compileOnly project(':modules:product')
+    compileOnly project(':modules:category')
+
+    // TEST
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation project(':modules:product')
+    testImplementation project(':modules:category')
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
