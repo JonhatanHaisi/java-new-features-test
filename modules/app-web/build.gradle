@@ -30,7 +30,7 @@ dependencies {
     implementation project(':modules:data')
     implementation project(':modules:product')
     implementation project(':modules:category')
-    implementation project(':modules:api-admin')
+    implementation project(':modules:admin-api')
 
     // TEST
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
