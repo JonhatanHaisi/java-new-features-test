@@ -9,10 +9,10 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 
   datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/appdb
     username: root
     password: 123456
-    driver-class-name: com.mysql.cj.jdbc.Driver
 
 springdoc:
   api-docs:
