@@ -1,4 +1,4 @@
-package com.haisi.java.testfeatures.app.errorhandling;
+package com.haisi.java.testfeatures.appweb.errorhandling;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,10 +18,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
-class ValidationErrorHandlerTest {
+class ControllerErrorHandlerTest {
 
     @InjectMocks
-    private ValidationErrorHandler errorHandler;
+    private ControllerErrorHandler errorHandler;
 
     @Test
     @DisplayName("Test the error handling for validation errors")
@@ -47,6 +47,18 @@ class ValidationErrorHandlerTest {
         assertEquals("the.property", result.getBody().get(0).getField(), "Wrong error field");
         assertEquals("validation message", result.getBody().get(0).getMessage(), "Wrong validation message");
         assertEquals(HttpStatus.BAD_REQUEST, result.getStatusCode(), "Wrong http error code");
+    }
+
+    @Test
+    @DisplayName("Test the error handling for unexpected errors")
+    void testHandleInternalServerError() {
+        var error = new Exception("Error Message");
+
+        var result = errorHandler.handleInternalServerError(error);
+
+        assertNotNull(result.getBody(), "Error dto not generated");
+        assertEquals("Unexpected server error", result.getBody().getMessage(), "Unexpected server error");
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, result.getStatusCode(), "Wrong http error code");
     }
 
 }
