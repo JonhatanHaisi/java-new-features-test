@@ -1,0 +1,12 @@
+type Product {
+    id: Int
+    name: String
+    description: String
+    categories: [Category]
+}
+
+input ProductInput {
+    name: String!
+    description: String
+    categories: [Int!]!
+}

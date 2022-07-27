@@ -1,0 +1,5 @@
+type Query {
+    allCategories: [Category]
+    allProduct: [Product]
+}
+

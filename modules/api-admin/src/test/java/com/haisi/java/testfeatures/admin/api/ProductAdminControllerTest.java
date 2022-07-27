@@ -9,11 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
@@ -72,19 +70,24 @@ class ProductAdminControllerTest {
     @Test
     @DisplayName("Update new category api")
     void update() {
-        var toUpdate = Mockito.mock(ProductUpdateDto.class);
+        var toUpdate = ProductUpdateDto.builder()
+            .name("Product")
+            .build();
         var updated = ProductResponseDto.builder()
-                .id(1L)
-                .name("Product")
-                .description("Description")
-                .build();
+            .id(1L)
+            .name("Product")
+            .description("Description")
+            .build();
 
         when(application.update(toUpdate))
-                .thenReturn(updated);
+                .thenAnswer(ctx -> {
+                    ProductUpdateDto prod = ctx.getArgument(0);
+                    assertEquals(1L, prod.getId(), "Id not defined");
+                    return updated;
+                });
 
         var result = controller.update(1L, toUpdate);
 
-        verify(toUpdate, times(1)).setId(1L);
         assertEquals(updated, result, "Wrong response");
     }
 

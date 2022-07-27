@@ -21,6 +21,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-logging'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation "org.springdoc:springdoc-openapi-ui:$springDocVersion"
+    implementation 'org.springframework.boot:spring-boot-starter-graphql'
 
     // DATABASE
     implementation "mysql:mysql-connector-java:$mysqlConnectorVersion"
@@ -30,7 +31,8 @@ dependencies {
     implementation project(':modules:data')
     implementation project(':modules:product')
     implementation project(':modules:category')
-    implementation project(':modules:admin-api')
+    implementation project(':modules:api-admin')
+    implementation project(':modules:api-graphql')
 
     // TEST
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

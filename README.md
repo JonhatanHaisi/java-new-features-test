@@ -22,3 +22,9 @@ JSON: [http://localhost:8080/api/docs/swagger.json](http://localhost:8080/api/do
 # Health Check URL
 
 [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health)
+
+# Graphql
+
+API: [http://localhost:8080/graphql](http://localhost:8080/graphql)
+
+Playground: [http://localhost:8080/graphiql](http://localhost:8080/graphiql)
