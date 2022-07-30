@@ -28,7 +28,7 @@ dependencies {
     compileOnly project(':modules:inf-data')
 
     // MODEL MAPPER
-    implementation "org.modelmapper:modelmapper:$modelMapperVersion"
+    compileOnly "org.modelmapper:modelmapper:$modelMapperVersion"
 
     // TEST
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
