@@ -27,10 +27,10 @@ dependencies {
     implementation "mysql:mysql-connector-java:$mysqlConnectorVersion"
 
     // PROJECT
-    implementation project(':modules:utilities')
-    implementation project(':modules:data')
-    implementation project(':modules:product')
-    implementation project(':modules:category')
+    implementation project(':modules:inf-utilities')
+    implementation project(':modules:inf-data')
+    implementation project(':modules:bus-product')
+    implementation project(':modules:bus-category')
     implementation project(':modules:api-admin')
     implementation project(':modules:api-graphql')
 

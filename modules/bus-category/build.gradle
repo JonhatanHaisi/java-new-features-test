@@ -24,17 +24,14 @@ dependencies {
     compileOnly 'org.springframework.boot:spring-boot-starter-logging'
 
     // PROJECT
-    compileOnly project(':modules:utilities')
-    compileOnly project(':modules:data')
-
-    // MODEL MAPPER
-    implementation "org.modelmapper:modelmapper:$modelMapperVersion"
+    compileOnly project(':modules:inf-utilities')
+    compileOnly project(':modules:inf-data')
 
     // TEST
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    testImplementation project(':modules:utilities')
-    testImplementation project(':modules:data')
+    testImplementation project(':modules:inf-utilities')
+    testImplementation project(':modules:inf-data')
 }
 
 tasks.named('test') {

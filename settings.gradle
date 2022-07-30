@@ -2,10 +2,13 @@ rootProject.name = 'TestFeatures'
 
 include 'database'
 
-include 'modules:utilities'
-include 'modules:data'
-include 'modules:product'
-include 'modules:category'
+include 'modules:inf-utilities'
+include 'modules:inf-data'
+
+include 'modules:bus-product'
+include 'modules:bus-category'
+
 include 'modules:api-admin'
 include 'modules:api-graphql'
+
 include 'modules:app-web'

@@ -18,16 +18,25 @@ repositories {
 
 dependencies {
     // SPRING
+    compileOnly 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.springframework.boot:spring-boot-starter-data-jpa'
-    runtimeOnly 'mysql:mysql-connector-java'
+    compileOnly 'org.springframework.boot:spring-boot-starter-validation'
+    compileOnly 'org.springframework.boot:spring-boot-starter-logging'
+
+    // PROJECT
+    compileOnly project(':modules:inf-utilities')
+    compileOnly project(':modules:inf-data')
+
+    // MODEL MAPPER
+    implementation "org.modelmapper:modelmapper:$modelMapperVersion"
 
     // TEST
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    testRuntimeOnly 'com.h2database:h2'
+    testImplementation project(':modules:inf-utilities')
+    testImplementation project(':modules:inf-data')
 }
 
 tasks.named('test') {
     useJUnitPlatform()
 }
-

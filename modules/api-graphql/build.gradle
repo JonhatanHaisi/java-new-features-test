@@ -23,14 +23,14 @@ dependencies {
     compileOnly 'org.springframework.boot:spring-boot-starter-graphql'
 
     // PROJECT
-    compileOnly project(':modules:utilities')
-    compileOnly project(':modules:product')
-    compileOnly project(':modules:category')
+    compileOnly project(':modules:inf-utilities')
+    compileOnly project(':modules:bus-product')
+    compileOnly project(':modules:bus-category')
 
     // TEST
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation project(':modules:product')
-    testImplementation project(':modules:category')
+    testImplementation project(':modules:bus-product')
+    testImplementation project(':modules:bus-category')
 }
 
 tasks.named('test') {
