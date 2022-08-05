@@ -28,6 +28,7 @@ dependencies {
 
     // TEST
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation project(':modules:inf-utilities')
     testImplementation project(':modules:bus-product')
     testImplementation project(':modules:bus-category')
 }

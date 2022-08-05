@@ -4,8 +4,10 @@ import com.haisi.java.testfeatures.category.application.CategoryApplicationFacad
 import com.haisi.java.testfeatures.category.dtos.CategoryCreateDto;
 import com.haisi.java.testfeatures.category.dtos.CategoryResponseDto;
 import com.haisi.java.testfeatures.category.dtos.CategoryUpdateDto;
+import com.haisi.java.testfeatures.category.model.CategoryPageableSearch;
 import com.haisi.java.testfeatures.utilities.abstractions.CrudModel;
 import com.haisi.java.testfeatures.utilities.qualifiers.Category;
+import com.haisi.java.testfeatures.utilities.web.dtos.Page;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Category))
 public class CategoryApplicationFacadeImpl implements CategoryApplicationFacade {
 
-    @Category
+    private final CategoryPageableSearch pageableSearch;
     private final CrudModel<Long> model;
 
     public CategoryResponseDto create(final CategoryCreateDto dto) {
@@ -33,6 +35,11 @@ public class CategoryApplicationFacadeImpl implements CategoryApplicationFacade 
     public CategoryResponseDto findById(final Long id) {
         return model.findById(id, CategoryResponseDto.class)
                 .orElse(null);
+    }
+
+    @Override
+    public Page<CategoryResponseDto> findAll(CategoryPageableSearch.CategoryFilter filter, Integer page, Integer size) {
+        return pageableSearch.findAll(filter, page, size, CategoryResponseDto.class);
     }
 
 }

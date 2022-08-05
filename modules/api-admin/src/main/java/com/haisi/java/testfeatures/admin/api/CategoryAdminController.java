@@ -4,10 +4,13 @@ import com.haisi.java.testfeatures.category.application.CategoryApplicationFacad
 import com.haisi.java.testfeatures.category.dtos.CategoryCreateDto;
 import com.haisi.java.testfeatures.category.dtos.CategoryResponseDto;
 import com.haisi.java.testfeatures.category.dtos.CategoryUpdateDto;
+import com.haisi.java.testfeatures.category.model.CategoryPageableSearch;
+import com.haisi.java.testfeatures.utilities.web.dtos.Page;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -19,6 +22,19 @@ public class CategoryAdminController {
     @GetMapping
     public List<CategoryResponseDto> findAll() {
         return application.findAll();
+    }
+
+    @GetMapping("/page")
+    public Page<CategoryResponseDto> findAllPageable(
+        @RequestParam(value = "page", defaultValue = "0") Integer page,
+        @RequestParam(value = "Size", defaultValue = "10") Integer size,
+        @RequestParam("name") Optional<String> name
+    ) {
+        var filter = CategoryPageableSearch.CategoryFilter
+            .builder()
+            .name(name)
+            .build();
+        return application.findAll(filter, page, size);
     }
 
     @GetMapping("/{id}")

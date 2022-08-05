@@ -21,6 +21,10 @@ dependencies {
     compileOnly 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'mysql:mysql-connector-java'
 
+    // META MODEL
+    implementation 'org.hibernate.orm:hibernate-jpamodelgen:6.1.2.Final'
+
+    // PROJECT
     compileOnly project(":modules:inf-utilities")
 
     // TEST
@@ -32,4 +36,3 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
-
