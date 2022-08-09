@@ -1,5 +1,7 @@
 package com.haisi.java.testfeatures.category.dtos;
 
+import com.haisi.java.testfeatures.utilities.validation.types.NamedDto;
+import com.haisi.java.testfeatures.category.validation.name.UniqueCategoryName;
 import lombok.*;
 import org.springframework.validation.annotation.Validated;
 
@@ -16,7 +18,8 @@ import static com.haisi.java.testfeatures.utilities.validation.ValidationMessage
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoryCreateDto {
+@UniqueCategoryName
+public class CategoryCreateDto implements NamedDto {
 
     @NotEmpty(message= FIELD_NOT_EMPTY)
     @Size(max = 255, message = FIELD_LENGTH_MAX)

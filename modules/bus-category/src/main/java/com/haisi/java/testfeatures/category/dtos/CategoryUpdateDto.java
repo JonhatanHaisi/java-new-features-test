@@ -1,6 +1,9 @@
 package com.haisi.java.testfeatures.category.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.haisi.java.testfeatures.utilities.validation.types.IdentifiedDto;
+import com.haisi.java.testfeatures.utilities.validation.types.NamedDto;
+import com.haisi.java.testfeatures.category.validation.name.UniqueCategoryName;
 import lombok.*;
 import org.springframework.validation.annotation.Validated;
 
@@ -14,10 +17,11 @@ import static com.haisi.java.testfeatures.utilities.validation.ValidationMessage
 @Setter
 @Builder
 @Validated
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-public class CategoryUpdateDto {
+@UniqueCategoryName
+public class CategoryUpdateDto implements IdentifiedDto, NamedDto {
 
     @NotNull
     @JsonIgnore

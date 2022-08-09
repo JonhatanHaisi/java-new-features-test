@@ -63,7 +63,8 @@ task jacocoRootReport(type: JacocoReport, group: 'Coverage reports') {
             '**/Application.class',
             'com/haisi/java/testfeatures/*/configuration/*',
             'com/haisi/java/testfeatures/**/dtos/*',
-            'com/haisi/java/testfeatures/data/entity/*'
+            'com/haisi/java/testfeatures/data/entity/*',
+            'com/haisi/java/testfeatures/data/metamodel/*'
         ]
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it, exclude: excludes)
