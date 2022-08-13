@@ -10,6 +10,8 @@ import javax.validation.ConstraintValidatorContext;
 import java.util.Objects;
 import java.util.Optional;
 
+import static java.util.Objects.isNull;
+
 @RequiredArgsConstructor
 public class UniqueCategoryNameValidator implements ConstraintValidator<UniqueCategoryName, NamedDto> {
 
@@ -17,19 +19,19 @@ public class UniqueCategoryNameValidator implements ConstraintValidator<UniqueCa
 
     @Override
     public boolean isValid(NamedDto value, ConstraintValidatorContext context) {
-        return getId(value)
-            .map(id ->
-                repository.findByName(value.getName())
-                    .filter(it -> !Objects.equals(it.getId(), id)).isEmpty())
-                    .orElseGet(() -> repository.findByName(value.getName()).isEmpty()
-            );
+        if (isNull(value.getName())) return true;
 
+        var id = getId(value);
+        return repository.findByName(value.getName())
+                .filter(it -> isNull(id) || !Objects.equals(id, it.getId()))
+                .isEmpty();
     }
 
-    private Optional<Long> getId(NamedDto value) {
+    private Long getId(NamedDto value) {
         return Optional.of(value)
             .filter(IdentifiedDto.class::isInstance)
             .map(IdentifiedDto.class::cast)
-            .map(IdentifiedDto::getId);
+            .map(IdentifiedDto::getId)
+            .orElse(null);
     }
 }

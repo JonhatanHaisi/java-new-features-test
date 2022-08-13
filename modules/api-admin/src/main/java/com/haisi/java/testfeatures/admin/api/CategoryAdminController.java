@@ -2,9 +2,9 @@ package com.haisi.java.testfeatures.admin.api;
 
 import com.haisi.java.testfeatures.category.application.CategoryApplicationFacade;
 import com.haisi.java.testfeatures.category.dtos.CategoryCreateDto;
+import com.haisi.java.testfeatures.category.dtos.CategoryFilter;
 import com.haisi.java.testfeatures.category.dtos.CategoryResponseDto;
 import com.haisi.java.testfeatures.category.dtos.CategoryUpdateDto;
-import com.haisi.java.testfeatures.category.model.CategoryPageableSearch;
 import com.haisi.java.testfeatures.utilities.web.dtos.Page;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +30,7 @@ public class CategoryAdminController {
         @RequestParam(value = "Size", defaultValue = "10") Integer size,
         @RequestParam("name") Optional<String> name
     ) {
-        var filter = CategoryPageableSearch.CategoryFilter
-            .builder()
+        var filter = CategoryFilter.builder()
             .name(name)
             .build();
         return application.findAll(filter, page, size);

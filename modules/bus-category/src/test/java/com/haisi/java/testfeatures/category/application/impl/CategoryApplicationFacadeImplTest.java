@@ -1,9 +1,12 @@
 package com.haisi.java.testfeatures.category.application.impl;
 
 import com.haisi.java.testfeatures.category.dtos.CategoryCreateDto;
+import com.haisi.java.testfeatures.category.dtos.CategoryFilter;
 import com.haisi.java.testfeatures.category.dtos.CategoryResponseDto;
 import com.haisi.java.testfeatures.category.dtos.CategoryUpdateDto;
+import com.haisi.java.testfeatures.category.model.CategoryPageableSearch;
 import com.haisi.java.testfeatures.utilities.abstractions.CrudModel;
+import com.haisi.java.testfeatures.utilities.web.dtos.Page;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,6 +18,8 @@ import java.util.Optional;
 
 import static java.util.Collections.singletonList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
@@ -22,6 +27,9 @@ class CategoryApplicationFacadeImplTest {
 
     @InjectMocks
     private CategoryApplicationFacadeImpl application;
+
+    @Mock
+    private CategoryPageableSearch categoryPageableSearch;
 
     @Mock
     private CrudModel<Long> model;
@@ -104,6 +112,21 @@ class CategoryApplicationFacadeImplTest {
         var result = application.findById(1L);
 
         assertEquals(response, result, "Wrong response");
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    @DisplayName("Find all entries using paged strategy")
+    void findAll_paged() {
+        var page = mock(Page.class);
+        var filter = CategoryFilter.builder().build();
+
+        when(categoryPageableSearch.findAll(filter, 0, 1, CategoryResponseDto.class))
+                .thenReturn(page);
+
+        var result = application.findAll(filter, 0, 1);
+
+        assertSame(page, result, "Wrong result");
     }
 
 }

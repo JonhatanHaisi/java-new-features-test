@@ -2,6 +2,7 @@ package com.haisi.java.testfeatures.category.application.impl;
 
 import com.haisi.java.testfeatures.category.application.CategoryApplicationFacade;
 import com.haisi.java.testfeatures.category.dtos.CategoryCreateDto;
+import com.haisi.java.testfeatures.category.dtos.CategoryFilter;
 import com.haisi.java.testfeatures.category.dtos.CategoryResponseDto;
 import com.haisi.java.testfeatures.category.dtos.CategoryUpdateDto;
 import com.haisi.java.testfeatures.category.model.CategoryPageableSearch;
@@ -38,7 +39,7 @@ public class CategoryApplicationFacadeImpl implements CategoryApplicationFacade 
     }
 
     @Override
-    public Page<CategoryResponseDto> findAll(CategoryPageableSearch.CategoryFilter filter, Integer page, Integer size) {
+    public Page<CategoryResponseDto> findAll(CategoryFilter filter, Integer page, Integer size) {
         return pageableSearch.findAll(filter, page, size, CategoryResponseDto.class);
     }
 

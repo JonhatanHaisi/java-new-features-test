@@ -1,13 +1,12 @@
 package com.haisi.java.testfeatures.data.metamodel;
 
-import com.haisi.java.testfeatures.data.entity.CategoryEntity;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.metamodel.SingularAttribute;
-import javax.persistence.metamodel.StaticMetamodel;
+import static lombok.AccessLevel.PRIVATE;
 
-@StaticMetamodel(CategoryEntity.class)
+@NoArgsConstructor(access = PRIVATE)
 public class CategoryEntity_ {
 
-    public static volatile SingularAttribute<CategoryEntity, String> name;
+    public static final String NAME = "name";
 
 }

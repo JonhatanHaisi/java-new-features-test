@@ -2,8 +2,10 @@ package com.haisi.java.testfeatures.admin.api;
 
 import com.haisi.java.testfeatures.category.application.CategoryApplicationFacade;
 import com.haisi.java.testfeatures.category.dtos.CategoryCreateDto;
+import com.haisi.java.testfeatures.category.dtos.CategoryFilter;
 import com.haisi.java.testfeatures.category.dtos.CategoryResponseDto;
 import com.haisi.java.testfeatures.category.dtos.CategoryUpdateDto;
+import com.haisi.java.testfeatures.utilities.web.dtos.Page;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,7 +13,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
@@ -22,6 +27,23 @@ class CategoryAdminControllerTest {
 
     @InjectMocks
     private CategoryAdminController controller;
+
+    @Test
+    @DisplayName("Find all using paged strategy")
+    void findAll_paged() {
+        var page = mock(Page.class);
+
+        when(application.findAll(any(), eq(0), eq(1)))
+            .thenAnswer(ctx -> {
+                CategoryFilter filter = ctx.getArgument(0);
+                assertEquals("name", filter.getName().orElse(null), "Wrong filter name");
+                return page;
+            });
+
+        var result = controller.findAllPageable(0, 1, Optional.of("name"));
+
+        assertSame(page, result, "Wrong result");
+    }
 
     @Test
     @DisplayName("Find all api")
