@@ -30,6 +30,7 @@ subprojects {
     dependencies {
         // LOMBOK
         compileOnly "org.projectlombok:lombok:$lombokVersion"
+        testCompileOnly "org.projectlombok:lombok:$lombokVersion"
         annotationProcessor "org.projectlombok:lombok:$lombokVersion"
     }
 
@@ -64,7 +65,7 @@ task jacocoRootReport(type: JacocoReport, group: 'Coverage reports') {
             'com/haisi/java/testfeatures/*/configuration/*',
             'com/haisi/java/testfeatures/**/dtos/*',
             'com/haisi/java/testfeatures/data/entity/*',
-            'com/haisi/java/testfeatures/data/metamodel/*'
+            'com/haisi/java/testfeatures/utilities/exceptions/*'
         ]
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it, exclude: excludes)

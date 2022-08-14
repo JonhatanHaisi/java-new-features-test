@@ -1,37 +1,34 @@
 package com.haisi.java.testfeatures.category.validation.name;
 
-import com.haisi.java.testfeatures.utilities.validation.types.IdentifiedDto;
-import com.haisi.java.testfeatures.utilities.validation.types.NamedDto;
+import com.haisi.java.testfeatures.category.dtos.CategoryCreateDto;
+import com.haisi.java.testfeatures.category.dtos.CategoryUpdateDto;
+import com.haisi.java.testfeatures.data.entity.CategoryEntity;
 import com.haisi.java.testfeatures.data.repository.CategoryRepository;
-import lombok.RequiredArgsConstructor;
+import com.haisi.java.testfeatures.utilities.exceptions.ImplementationErrorException;
+import com.haisi.java.testfeatures.utilities.validation.unique.UniqueFieldValidation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.Objects;
-import java.util.Optional;
 
-import static java.util.Objects.isNull;
+public class UniqueCategoryNameValidator
+    extends UniqueFieldValidation<CategoryEntity, String, Long>
+    implements ConstraintValidator<UniqueCategoryName, Object> {
 
-@RequiredArgsConstructor
-public class UniqueCategoryNameValidator implements ConstraintValidator<UniqueCategoryName, NamedDto> {
-
-    private final CategoryRepository repository;
+    public UniqueCategoryNameValidator(CategoryRepository repository) {
+        super(repository::findByName, CategoryEntity::getId);
+    }
 
     @Override
-    public boolean isValid(NamedDto value, ConstraintValidatorContext context) {
-        if (isNull(value.getName())) return true;
+    public boolean isValid(Object value, ConstraintValidatorContext context) {
+        if (value instanceof CategoryCreateDto dto) {
+            return isValid(dto::getName);
+        }
 
-        var id = getId(value);
-        return repository.findByName(value.getName())
-                .filter(it -> isNull(id) || !Objects.equals(id, it.getId()))
-                .isEmpty();
+        if (value instanceof CategoryUpdateDto dto) {
+            return isValid(dto::getName, dto::getId);
+        }
+
+        throw new ImplementationErrorException("Wrong dto type");
     }
 
-    private Long getId(NamedDto value) {
-        return Optional.of(value)
-            .filter(IdentifiedDto.class::isInstance)
-            .map(IdentifiedDto.class::cast)
-            .map(IdentifiedDto::getId)
-            .orElse(null);
-    }
 }

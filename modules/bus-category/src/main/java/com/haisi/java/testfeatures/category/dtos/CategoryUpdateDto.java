@@ -1,8 +1,6 @@
 package com.haisi.java.testfeatures.category.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.haisi.java.testfeatures.utilities.validation.types.IdentifiedDto;
-import com.haisi.java.testfeatures.utilities.validation.types.NamedDto;
 import com.haisi.java.testfeatures.category.validation.name.UniqueCategoryName;
 import lombok.*;
 import org.springframework.validation.annotation.Validated;
@@ -11,7 +9,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import static com.haisi.java.testfeatures.utilities.validation.ValidationMessages.*;
+import static com.haisi.java.testfeatures.utilities.validation.ValidationMessages.FIELD_LENGTH_MAX;
+import static com.haisi.java.testfeatures.utilities.validation.ValidationMessages.FIELD_NOT_EMPTY;
 
 @Getter
 @Setter
@@ -21,7 +20,7 @@ import static com.haisi.java.testfeatures.utilities.validation.ValidationMessage
 @NoArgsConstructor
 @AllArgsConstructor
 @UniqueCategoryName
-public class CategoryUpdateDto implements IdentifiedDto, NamedDto {
+public class CategoryUpdateDto {
 
     @NotNull
     @JsonIgnore

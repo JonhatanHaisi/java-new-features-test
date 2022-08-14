@@ -4,6 +4,7 @@ import com.haisi.java.testfeatures.category.dtos.CategoryCreateDto;
 import com.haisi.java.testfeatures.category.dtos.CategoryUpdateDto;
 import com.haisi.java.testfeatures.data.entity.CategoryEntity;
 import com.haisi.java.testfeatures.data.repository.CategoryRepository;
+import com.haisi.java.testfeatures.utilities.exceptions.ImplementationErrorException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,8 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.Optional;
 
 import static java.util.Collections.emptyList;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
@@ -86,6 +86,12 @@ class UniqueCategoryNameValidatorTest {
         var result = validator.isValid(new CategoryUpdateDto(1L, "name"), null);
 
         assertFalse(result, "Wrong validation result");
+    }
+
+    @Test
+    @DisplayName("An object who is not acceptable to he validator")
+    void isValid_invalid_dtoType() {
+        assertThrowsExactly(ImplementationErrorException.class, () -> validator.isValid(new Object(), null));
     }
 
 }
