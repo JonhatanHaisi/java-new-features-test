@@ -2,6 +2,7 @@ package com.haisi.java.testfeatures.appweb.errorhandling;
 
 import com.haisi.java.testfeatures.utilities.web.dtos.ErrorDto;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -9,8 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+import static org.springframework.http.HttpStatus.*;
 
 @Log4j2
 @ControllerAdvice
@@ -38,6 +38,11 @@ public class ControllerErrorHandler {
                 ).toList();
 
         return new ResponseEntity<>(errors, BAD_REQUEST);
+    }
+
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    public ResponseEntity<List<ErrorDto>> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex) {
+        return new ResponseEntity<>(null, NOT_FOUND);
     }
 
 }

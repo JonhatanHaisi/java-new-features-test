@@ -19,8 +19,7 @@ import java.util.Optional;
 import static java.util.Collections.singletonList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
 class CategoryApplicationFacadeImplTest {
@@ -127,6 +126,13 @@ class CategoryApplicationFacadeImplTest {
         var result = application.findAll(filter, 0, 1);
 
         assertSame(page, result, "Wrong result");
+    }
+
+    @Test
+    @DisplayName("Delete a category by id")
+    void delete() {
+        application.delete(1L);
+        verify(model).deleteById(1L);
     }
 
 }

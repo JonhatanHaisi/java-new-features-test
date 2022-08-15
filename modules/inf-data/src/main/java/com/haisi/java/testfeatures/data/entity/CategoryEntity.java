@@ -1,6 +1,7 @@
 package com.haisi.java.testfeatures.data.entity;
 
 import lombok.*;
+import org.hibernate.annotations.NotFound;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 public class CategoryEntity {
 
     @Id
+    @NotFound
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import static org.springframework.http.HttpStatus.NO_CONTENT;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/category")
@@ -50,6 +52,12 @@ public class CategoryAdminController {
     public CategoryResponseDto update(@PathVariable Long id, @RequestBody CategoryUpdateDto dto) {
         dto.setId(id);
         return application.update(dto);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(code = NO_CONTENT, reason = "ok")
+    public void delete(@PathVariable Long id) {
+        application.delete(id);
     }
 
 }

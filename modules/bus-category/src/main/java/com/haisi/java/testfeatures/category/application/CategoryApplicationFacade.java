@@ -12,6 +12,7 @@ public interface CategoryApplicationFacade {
 
     CategoryResponseDto create(final CategoryCreateDto dto);
     CategoryResponseDto update(final CategoryUpdateDto dto);
+    void delete(final Long id);
     List<CategoryResponseDto> findAll();
     CategoryResponseDto findById(final Long id);
     Page<CategoryResponseDto> findAll(CategoryFilter filter, Integer page, Integer size);

@@ -24,7 +24,8 @@ class ControllerErrorHandlerTest {
     private ControllerErrorHandler errorHandler;
 
     @Test
-    @DisplayName("Test the error handling for validation errors")
+    @SuppressWarnings("unchecked")
+    @DisplayName("Rrror handling for validation errors")
     void serverError() {
         var error = mock(ConstraintViolationException.class);
         var violation = mock(ConstraintViolation.class);
@@ -50,8 +51,8 @@ class ControllerErrorHandlerTest {
     }
 
     @Test
-    @DisplayName("Test the error handling for unexpected errors")
-    void testHandleInternalServerError() {
+    @DisplayName("Error handling for unexpected errors")
+    void internalServerError() {
         var error = new Exception("Error Message");
 
         var result = errorHandler.handleInternalServerError(error);
@@ -59,6 +60,13 @@ class ControllerErrorHandlerTest {
         assertNotNull(result.getBody(), "Error dto not generated");
         assertEquals("Unexpected server error", result.getBody().getMessage(), "Unexpected server error");
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, result.getStatusCode(), "Wrong http error code");
+    }
+
+    @Test
+    @DisplayName("Error handling when spring data can't find the entity")
+    void emptyResultDataAccessException() {
+        var result = errorHandler.handleEmptyResultDataAccessException(null);
+        assertEquals(HttpStatus.NOT_FOUND, result.getStatusCode(), "Wrong http error code");
     }
 
 }

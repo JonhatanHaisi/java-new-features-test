@@ -110,4 +110,11 @@ class CategoryAdminControllerTest {
         assertEquals(updated, result, "Wrong response");
     }
 
+    @Test
+    @DisplayName("Delete a category by id")
+    void delete() {
+        controller.delete(1L);
+        verify(application).delete(1L);
+    }
+
 }

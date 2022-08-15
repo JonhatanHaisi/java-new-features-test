@@ -29,6 +29,11 @@ public class CategoryApplicationFacadeImpl implements CategoryApplicationFacade 
         return model.save(dto, CategoryResponseDto.class);
     }
 
+    @Override
+    public void delete(Long id) {
+        model.deleteById(id);
+    }
+
     public List<CategoryResponseDto> findAll() {
         return model.findAll(CategoryResponseDto.class);
     }

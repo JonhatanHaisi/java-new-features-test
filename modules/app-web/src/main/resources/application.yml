@@ -10,7 +10,7 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/appdb
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/appdb?autoReconnect=true&useSSL=false
     username: root
     password: 123456
 
