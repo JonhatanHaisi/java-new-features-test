@@ -31,6 +31,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     testImplementation 'org.springframework.boot:spring-boot-starter-validation'
+    testImplementation 'org.apache.commons:commons-lang3:3.12.0'
     testImplementation project(':modules:inf-utilities')
     testImplementation project(':modules:inf-data')
 }
